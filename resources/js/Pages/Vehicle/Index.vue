@@ -13,14 +13,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="vehicle in vehicles.data" :key="vehicle.id" class="mx-5 text-center">
+            <tr v-for="vehicle in vehicles" :key="vehicle.id" class="mx-5 text-center">
                 <th scope="row" class="border border-2 border-blue-500 p-2">{{ vehicle.id }}</th>
                 <td class="border border-2 border-blue-500">{{ vehicle.manufacturer_id }}</td>
-                <td class="border border-2 border-blue-500">{{ vehicle.model }}</td>
+                <td class="border border-2 border-blue-500">{{ vehicle.model_id }}</td>
                 <td class="border border-2 border-blue-500">{{ vehicle.number_chassis }}</td>
                 <td class="border border-2 border-blue-500">{{ vehicle.title }}</td>
                 <td class="border border-2 border-blue-500">{{ vehicle.description }}</td>
-                <td class="border border-2 border-blue-500">{{ vehicle.image }}</td>
+                <td class="border border-2 border-blue-500">
+                    <img :src="vehicle.image" alt="Image alt">
+                </td>
             </tr>
             </tbody>
         </table>
