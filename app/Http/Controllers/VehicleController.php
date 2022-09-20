@@ -22,9 +22,9 @@ class VehicleController extends Controller
 
     public function create(): Response
     {
-       $vehicle_models = VehicleModel::all();
-       $manufacturers = Manufacturer::all();
-       return Inertia::render('Vehicle/Create', compact('vehicle_models', 'manufacturers'));
+        $manufacturers = Manufacturer::all();
+        $vehicle_models = VehicleModel::all();
+        return Inertia::render('Vehicle/Create', compact('vehicle_models', 'manufacturers'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -46,6 +46,30 @@ class VehicleController extends Controller
         $vehicle->description = $request->input('description');
         $vehicle->image = $request->input('image');
 
+        $vehicle->save();
+
+        return Redirect::route("vehicles.index");
+    }
+
+    public function edit(Vehicle $vehicle): Response
+    {
+        $manufacturers = Manufacturer::all();
+        $vehicle_models = VehicleModel::all();
+        return Inertia::render('Vehicle/Edit', compact('vehicle', 'vehicle_models', 'manufacturers'));
+    }
+
+    public function update(Vehicle $vehicle, Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'manufacturer_id' => 'required',
+            'model_id' => 'required',
+            'number_chassis' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required'
+        ]);
+
+        $vehicle->fill($validated);
         $vehicle->save();
 
         return Redirect::route("vehicles.index");
