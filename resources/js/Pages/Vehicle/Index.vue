@@ -10,6 +10,7 @@
                 <th scope="col" class="py-2 px-7 mx-3">Title</th>
                 <th scope="col" class="py-2 px-7 mx-3">Description</th>
                 <th scope="col" class="py-2 px-7 mx-3">Image</th>
+                <th scope="col" class="py-2 px-7 mx-3"></th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,11 @@
                 <td class="border border-2 border-blue-500">
                     <img :src="vehicle.image" alt="Image alt">
                 </td>
+                <td class="border border-2 border-blue-500">
+                    <Link method="DELETE" type="button" :href="route('vehicles.destroy', vehicle.id)">
+                        DELETE
+                    </Link>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -30,6 +36,8 @@
 </template>
 
 <script>
+import {InertiaLink} from "@inertiajs/inertia-vue3";
+
 export default {
     name: "Index",
     props: {

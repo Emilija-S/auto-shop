@@ -50,4 +50,10 @@ class VehicleController extends Controller
 
         return Redirect::route("vehicles.index");
     }
+
+    public function destroy(Vehicle $vehicle): RedirectResponse
+    {
+        $vehicle->delete();
+        return Redirect::route("vehicles.index");
+    }
 }
