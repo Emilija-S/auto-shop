@@ -35,4 +35,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('vehicles', VehicleController::class)->only('index');
+Route::resource('vehicles', VehicleController::class);
